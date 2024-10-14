@@ -47,11 +47,35 @@ bool JsonArchive::save()
         return false;
     } else {
         QFileInfo info(fileName);
+        QString ext = info.suffix();
+        if(ext.isEmpty()) {
+            fileName += ".json";
+        }
         directory_ = info.absolutePath();
         saveFile(fileName);
     }
 
     return true;
+}
+
+void JsonArchive::set(QJsonObject& json, const QString& key, const int& value)
+{
+    json[key] = value;
+}
+
+void JsonArchive::set(QJsonObject& json, const QString& key, const double& value)
+{
+    json[key] = value;
+}
+
+void JsonArchive::set(QJsonObject& json, const QString& key, const bool& value)
+{
+    json[key] = value;
+}
+
+void JsonArchive::set(QJsonObject& json, const QString& key, const QString& value)
+{
+    json[key] = value;
 }
 
 int JsonArchive::get(const QJsonObject& json, const QString& key, const int& init) const
@@ -88,6 +112,42 @@ QString JsonArchive::get(const QJsonObject& json, const QString& key, const char
         ret = v.toString();
     }
     return ret;
+}
+
+void JsonArchive::set(QJsonObject& json, const QString& key, QVector<int>& vector)
+{
+    QJsonArray array;
+    for(const auto& value : vector) {
+        array.append(value);
+    }
+    json[key] = array;
+}
+
+void JsonArchive::set(QJsonObject& json, const QString& key, QVector<double>& vector)
+{
+    QJsonArray array;
+    for(const auto& value : vector) {
+        array.append(value);
+    }
+    json[key] = array;
+}
+
+void JsonArchive::set(QJsonObject& json, const QString& key, QVector<bool>& vector)
+{
+    QJsonArray array;
+    for(const auto& value : vector) {
+        array.append(value);
+    }
+    json[key] = array;
+}
+
+void JsonArchive::set(QJsonObject& json, const QString& key, QVector<QString>& vector)
+{
+    QJsonArray array;
+    for(const auto& value : vector) {
+        array.append(value);
+    }
+    json[key] = array;
 }
 
 bool JsonArchive::get(const QJsonObject& json, const QString& key, QVector<int>& vector)
