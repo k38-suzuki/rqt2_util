@@ -20,9 +20,9 @@ JsonArchive::~JsonArchive()
 
 }
 
-bool JsonArchive::open()
+bool JsonArchive::open(QWidget* parent)
 {
-    QString fileName = QFileDialog::getOpenFileName(nullptr, "Open File",
+    QString fileName = QFileDialog::getOpenFileName(parent, "Open File",
         directory_,
         "JSON Files (*.json);;All Files (*)");
 
@@ -37,9 +37,9 @@ bool JsonArchive::open()
     return true;
 }
 
-bool JsonArchive::save()
+bool JsonArchive::save(QWidget* parent)
 {
-    QString fileName = QFileDialog::getSaveFileName(nullptr, "Save File",
+    QString fileName = QFileDialog::getSaveFileName(parent, "Save File",
         directory_,
         "JSON Files (*.json);;All Files (*)");
 

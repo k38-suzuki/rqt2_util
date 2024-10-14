@@ -15,8 +15,8 @@ public:
 
     virtual ~JsonArchive();
 
-    bool open();
-    bool save();
+    bool open(QWidget* parent = nullptr);
+    bool save(QWidget* parent = nullptr);
 
     virtual void read(const QJsonObject& json) = 0;
     virtual void write(QJsonObject& json) = 0;
