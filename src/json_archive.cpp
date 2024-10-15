@@ -10,7 +10,8 @@ namespace rqt2_util
 {
 
 JsonArchive::JsonArchive()
-    : directory_("/home")
+    : JsonArchiveInterface()
+    , directory_("/home")
 {
 
 }
@@ -56,6 +57,16 @@ bool JsonArchive::save(QWidget* parent)
     }
 
     return true;
+}
+
+void JsonArchive::read(const QJsonObject& json)
+{
+    (void) json;
+}
+
+void JsonArchive::write(QJsonObject& json)
+{
+    (void) json;
 }
 
 bool JsonArchive::loadFile(const QString& fileName)

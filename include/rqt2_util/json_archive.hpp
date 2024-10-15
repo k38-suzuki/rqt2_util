@@ -8,7 +8,18 @@
 namespace rqt2_util
 {
 
-class JsonArchive
+class JsonArchiveInterface
+{
+public:
+    virtual void read(const QJsonObject& json) = 0;
+    virtual void write(QJsonObject& json) = 0;
+    virtual ~JsonArchiveInterface(){}
+
+protected:
+    JsonArchiveInterface(){}
+};
+
+class JsonArchive : public JsonArchiveInterface
 {
 public:
     JsonArchive();
@@ -18,8 +29,8 @@ public:
     bool open(QWidget* parent = nullptr);
     bool save(QWidget* parent = nullptr);
 
-    virtual void read(const QJsonObject& json) = 0;
-    virtual void write(QJsonObject& json) = 0;
+    virtual void read(const QJsonObject& json) override;
+    virtual void write(QJsonObject& json) override;
 
 private:
     bool loadFile(const QString& fileName);
